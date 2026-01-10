@@ -200,6 +200,11 @@
       color: var(--light-grey);
     }
 
+    .nav-logo-img {
+      height: 45px;
+      width: auto;
+    }
+
     .nav-logo-icon {
       width: 40px;
       height: 40px;
@@ -449,6 +454,15 @@
       background-clip: text;
       position: relative;
       z-index: 1;
+    }
+
+    .hero-logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 30px var(--copper-glow));
     }
 
     /* ===== SERVICES PREVIEW ===== */
@@ -1168,6 +1182,11 @@
       margin-bottom: 1rem;
     }
 
+    .footer-logo-img {
+      height: 60px;
+      width: auto;
+    }
+
     .footer-description {
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
@@ -1400,8 +1419,7 @@
   <nav class="nav">
     <div class="nav-container">
       <a href="#" class="nav-logo">
-        <div class="nav-logo-icon"></div>
-        <span>VMP</span>
+        <img src="logo.PNG" alt="Vas Media Productions" class="nav-logo-img">
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link">Home</a></li>
@@ -1442,9 +1460,7 @@
         </div>
         <div class="hero-visual">
           <div class="hero-logo-display">
-            <div class="hero-logo-inner">
-              <span class="hero-logo-text">VMP</span>
-            </div>
+            <img src="logo.PNG" alt="Vas Media Productions" class="hero-logo-img">
           </div>
         </div>
       </div>
@@ -1781,8 +1797,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <a href="#" class="footer-logo">
-            <div class="nav-logo-icon"></div>
-            <span>VMP</span>
+            <img src="logo.PNG" alt="Vas Media Productions" class="footer-logo-img">
           </a>
           <p class="footer-description">
             Vasquez Media Productions delivers data-driven SEO and custom web development to help businesses grow their digital presence.
