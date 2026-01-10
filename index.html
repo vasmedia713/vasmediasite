@@ -399,6 +399,9 @@
       height: 350px;
       position: relative;
       animation: float 6s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     @keyframes float {
@@ -430,8 +433,8 @@
     }
 
     .hero-logo-img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 120%;
+      height: 120%;
       object-fit: contain;
       position: relative;
       z-index: 1;
@@ -842,45 +845,31 @@
       flex-shrink: 0;
     }
 
-    .tpw-videos {
+    .tpw-logo {
+      max-width: 200px;
+      height: auto;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .tpw-images {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
-    .tpw-video-placeholder {
+    .tpw-image {
+      width: 100%;
       aspect-ratio: 9/16;
+      object-fit: cover;
       background: var(--charcoal-light);
       border-radius: 12px;
       border: 1px solid rgba(194, 155, 109, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
       transition: var(--transition-smooth);
     }
 
-    .tpw-video-placeholder:hover {
+    .tpw-image:hover {
       border-color: var(--copper);
       transform: translateY(-4px);
-    }
-
-    .tpw-video-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--deep-red);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    .tpw-video-label {
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      color: var(--mid-grey);
     }
 
     /* ===== PRICING SECTION ===== */
@@ -1346,7 +1335,7 @@
         grid-template-columns: 1fr;
       }
 
-      .tpw-videos {
+      .tpw-images {
         grid-template-columns: 1fr;
       }
 
@@ -1614,10 +1603,11 @@
     <div class="container">
       <div class="tpw-content">
         <div class="tpw-text fade-in">
-          <p class="section-label">Media Channel</p>
+          <p class="section-label">Featured Project</p>
           <h2>Texas Power Watch</h2>
+          <img src="tpw-logo.png" alt="Texas Power Watch Logo" class="tpw-logo">
           <p>
-            Empowering Texas electricity consumers with unbiased insights, provider reviews, and market analysis. Follow along on TikTok for quick tips and deep dives into the deregulated energy market.
+            An automated social media platform empowering Texas electricity consumers with unbiased insights, provider reviews, and market analysis. Powered by a fully automated content production workflow, Texas Power Watch delivers timely updates across multiple platforms.
           </p>
           <div class="tpw-features">
             <div class="tpw-feature">
@@ -1637,27 +1627,23 @@
               <span>Breaking news on Texas energy policy</span>
             </div>
           </div>
-          <a href="https://tiktok.com/@texaspowerwatch" target="_blank" class="btn btn-primary">
-            Follow on TikTok
-          </a>
+          <div class="tpw-social-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://tiktok.com/@texaspowerwatch" target="_blank" class="btn btn-primary">
+              TikTok
+            </a>
+            <a href="https://facebook.com/texaspowerwatch" target="_blank" class="btn btn-secondary">
+              Facebook
+            </a>
+            <a href="https://instagram.com/texaspowerwatch" target="_blank" class="btn btn-secondary">
+              Instagram
+            </a>
+          </div>
         </div>
-        <div class="tpw-videos fade-in stagger-1">
-          <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon" aria-hidden="true">▶</div>
-            <span class="tpw-video-label">Latest Video</span>
-          </div>
-          <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon" aria-hidden="true">▶</div>
-            <span class="tpw-video-label">Popular</span>
-          </div>
-          <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon" aria-hidden="true">▶</div>
-            <span class="tpw-video-label">Trending</span>
-          </div>
-          <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon" aria-hidden="true">▶</div>
-            <span class="tpw-video-label">Featured</span>
-          </div>
+        <div class="tpw-images fade-in stagger-1">
+          <img src="image1.png" alt="Texas Power Watch content" class="tpw-image">
+          <img src="image2.png" alt="Texas Power Watch content" class="tpw-image">
+          <img src="image3.png" alt="Texas Power Watch content" class="tpw-image">
+          <img src="image4.png" alt="Texas Power Watch content" class="tpw-image">
         </div>
       </div>
     </div>
