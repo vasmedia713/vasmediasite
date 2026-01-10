@@ -454,7 +454,7 @@
 
     .glitch-content {
       position: relative;
-      width: 520px;
+      width: 700px;
       max-width: 100%;
     }
 
@@ -950,6 +950,26 @@
     .tpw-image:hover {
       border-color: var(--copper);
       transform: translateY(-4px);
+    }
+
+    .tpw-video-embed {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: var(--charcoal-light);
+      border-radius: 12px;
+      border: 1px solid rgba(194, 155, 109, 0.2);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .tpw-video-embed:hover {
+      border-color: var(--copper);
+      transform: translateY(-4px);
+    }
+
+    .tpw-video-embed iframe {
+      width: 100%;
+      height: 100%;
     }
 
     /* ===== PRICING SECTION ===== */
@@ -1724,7 +1744,9 @@
           </div>
         </div>
         <div class="tpw-images fade-in stagger-1">
-          <img src="image1.png" alt="Texas Power Watch content" class="tpw-image">
+          <div class="tpw-video-embed">
+            <iframe src="https://www.youtube.com/embed/3TRywAZo4PI" title="Texas Power Watch Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
           <img src="image2.png" alt="Texas Power Watch content" class="tpw-image">
           <img src="image3.png" alt="Texas Power Watch content" class="tpw-image">
           <img src="image4.png" alt="Texas Power Watch content" class="tpw-image">
