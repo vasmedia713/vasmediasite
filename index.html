@@ -6,7 +6,48 @@
   <meta name="description" content="Vasquez Media Productions - Where Creativity Meets Code. Professional SEO, Web Design, and Development services in Houston, Texas.">
   <meta name="keywords" content="SEO, web design, web development, digital marketing, Houston, Texas">
   <title>Vasquez Media Productions | Where Creativity Meets Code</title>
-  
+
+  <!-- Canonical URL - Update with your actual domain -->
+  <link rel="canonical" href="https://vasmediaproductions.com/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vasmediaproductions.com/">
+  <meta property="og:title" content="Vasquez Media Productions | Where Creativity Meets Code">
+  <meta property="og:description" content="Professional SEO, Web Design, and Development services in Houston, Texas. Fusing technology and artistry to make your brand unforgettable.">
+  <meta property="og:image" content="https://vasmediaproductions.com/logo.PNG">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vasquez Media Productions | Where Creativity Meets Code">
+  <meta name="twitter:description" content="Professional SEO, Web Design, and Development services in Houston, Texas.">
+  <meta name="twitter:image" content="https://vasmediaproductions.com/logo.PNG">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Vasquez Media Productions",
+    "description": "Professional SEO, Web Design, and Development services in Houston, Texas.",
+    "url": "https://vasmediaproductions.com",
+    "logo": "https://vasmediaproductions.com/logo.PNG",
+    "email": "vasmedia713@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Houston",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Houston, Texas"
+    },
+    "serviceType": ["SEO", "Web Design", "Web Development", "Digital Marketing"],
+    "priceRange": "$500 - $2500/month"
+  }
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -205,35 +246,6 @@
       width: auto;
     }
 
-    .nav-logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--copper) 0%, var(--deep-red) 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-logo-icon::before {
-      content: 'V';
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--charcoal);
-    }
-
-    .nav-logo-icon::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        linear-gradient(90deg, transparent 40%, rgba(14, 17, 22, 0.3) 40%, rgba(14, 17, 22, 0.3) 42%, transparent 42%),
-        linear-gradient(0deg, transparent 60%, rgba(14, 17, 22, 0.3) 60%, rgba(14, 17, 22, 0.3) 62%, transparent 62%);
-    }
-
     .nav-links {
       display: flex;
       gap: 2.5rem;
@@ -415,45 +427,6 @@
     @keyframes rotate {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
-    }
-
-    .hero-logo-inner {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--charcoal-light) 0%, var(--charcoal) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      box-shadow: 
-        0 0 60px var(--copper-glow),
-        inset 0 0 60px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-    }
-
-    .hero-logo-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        /* Circuit lines */
-        linear-gradient(90deg, transparent 48%, rgba(194, 155, 109, 0.1) 48%, rgba(194, 155, 109, 0.1) 52%, transparent 52%),
-        linear-gradient(0deg, transparent 48%, rgba(194, 155, 109, 0.1) 48%, rgba(194, 155, 109, 0.1) 52%, transparent 52%),
-        linear-gradient(45deg, transparent 48%, rgba(139, 44, 44, 0.08) 48%, rgba(139, 44, 44, 0.08) 52%, transparent 52%);
-      background-size: 30px 30px;
-    }
-
-    .hero-logo-text {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 6rem;
-      background: linear-gradient(135deg, var(--copper) 0%, var(--deep-red) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      z-index: 1;
     }
 
     .hero-logo-img {
@@ -1153,6 +1126,22 @@
       gap: 1rem;
     }
 
+    .form-success,
+    .form-error {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success h3,
+    .form-error h3 {
+      color: var(--copper);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-error h3 {
+      color: var(--deep-red);
+    }
+
     /* ===== FOOTER ===== */
     .footer {
       background: var(--charcoal-light);
@@ -1412,9 +1401,31 @@
     .stagger-3 { transition-delay: 0.3s; }
     .stagger-4 { transition-delay: 0.4s; }
     .stagger-5 { transition-delay: 0.5s; }
+
+    /* ===== ACCESSIBILITY ===== */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--copper);
+      color: var(--charcoal);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      z-index: 9999;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+      color: var(--charcoal);
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
@@ -1438,6 +1449,7 @@
     </div>
   </nav>
 
+  <main id="main">
   <!-- Hero Section -->
   <section class="hero section" id="home">
     <div class="hero-bg"></div>
@@ -1479,7 +1491,7 @@
       </div>
       <div class="services-grid">
         <div class="service-card fade-in">
-          <div class="service-icon">📊</div>
+          <div class="service-icon" aria-hidden="true">📊</div>
           <h3 class="service-title">SEO & Marketing</h3>
           <p class="service-description">
             Data-driven strategies to improve your search visibility, drive organic traffic, and convert visitors into customers.
@@ -1487,7 +1499,7 @@
           <a href="#pricing" class="service-link">View Packages</a>
         </div>
         <div class="service-card fade-in stagger-1">
-          <div class="service-icon">💻</div>
+          <div class="service-icon" aria-hidden="true">💻</div>
           <h3 class="service-title">Web Design & Development</h3>
           <p class="service-description">
             Custom websites built with modern technologies, optimized for performance, accessibility, and conversion.
@@ -1506,7 +1518,7 @@
         <div class="about-image fade-in">
           <div class="about-image-frame">
             <div class="about-image-content">
-              <span class="about-image-icon">⚡</span>
+              <span class="about-image-icon" aria-hidden="true">⚡</span>
               <span class="about-image-text">Craft & Code</span>
             </div>
           </div>
@@ -1560,7 +1572,7 @@
       </div>
       <div class="portfolio-grid">
         <div class="portfolio-item fade-in" data-category="digital">
-          <div class="portfolio-item-bg">🌐</div>
+          <div class="portfolio-item-bg" aria-hidden="true">🌐</div>
           <div class="portfolio-item-overlay">
             <span class="portfolio-item-category">Web Development</span>
             <h4 class="portfolio-item-title">E-Commerce Platform</h4>
@@ -1568,7 +1580,7 @@
           </div>
         </div>
         <div class="portfolio-item fade-in stagger-1" data-category="seo">
-          <div class="portfolio-item-bg">📈</div>
+          <div class="portfolio-item-bg" aria-hidden="true">📈</div>
           <div class="portfolio-item-overlay">
             <span class="portfolio-item-category">SEO Campaign</span>
             <h4 class="portfolio-item-title">Local Business Growth</h4>
@@ -1577,7 +1589,7 @@
         </div>
 
         <div class="portfolio-item fade-in stagger-3" data-category="digital">
-          <div class="portfolio-item-bg">📱</div>
+          <div class="portfolio-item-bg" aria-hidden="true">📱</div>
           <div class="portfolio-item-overlay">
             <span class="portfolio-item-category">Web Design</span>
             <h4 class="portfolio-item-title">Restaurant Website</h4>
@@ -1585,7 +1597,7 @@
           </div>
         </div>
         <div class="portfolio-item fade-in stagger-4" data-category="seo">
-          <div class="portfolio-item-bg">🔍</div>
+          <div class="portfolio-item-bg" aria-hidden="true">🔍</div>
           <div class="portfolio-item-overlay">
             <span class="portfolio-item-category">Technical SEO</span>
             <h4 class="portfolio-item-title">Site Architecture Overhaul</h4>
@@ -1631,19 +1643,19 @@
         </div>
         <div class="tpw-videos fade-in stagger-1">
           <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon">▶</div>
+            <div class="tpw-video-icon" aria-hidden="true">▶</div>
             <span class="tpw-video-label">Latest Video</span>
           </div>
           <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon">▶</div>
+            <div class="tpw-video-icon" aria-hidden="true">▶</div>
             <span class="tpw-video-label">Popular</span>
           </div>
           <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon">▶</div>
+            <div class="tpw-video-icon" aria-hidden="true">▶</div>
             <span class="tpw-video-label">Trending</span>
           </div>
           <div class="tpw-video-placeholder">
-            <div class="tpw-video-icon">▶</div>
+            <div class="tpw-video-icon" aria-hidden="true">▶</div>
             <span class="tpw-video-label">Featured</span>
           </div>
         </div>
@@ -1738,21 +1750,21 @@
           </p>
           <div class="contact-details">
             <div class="contact-detail">
-              <div class="contact-detail-icon">📧</div>
+              <div class="contact-detail-icon" aria-hidden="true">📧</div>
               <div class="contact-detail-text">
                 <span class="contact-detail-label">Email</span>
                 <span class="contact-detail-value">vasmedia713@gmail.com</span>
               </div>
             </div>
             <div class="contact-detail">
-              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-icon" aria-hidden="true">📍</div>
               <div class="contact-detail-text">
                 <span class="contact-detail-label">Location</span>
                 <span class="contact-detail-value">Houston, Texas</span>
               </div>
             </div>
             <div class="contact-detail">
-              <div class="contact-detail-icon">🕐</div>
+              <div class="contact-detail-icon" aria-hidden="true">🕐</div>
               <div class="contact-detail-text">
                 <span class="contact-detail-label">Response Time</span>
                 <span class="contact-detail-value">Within 24 hours</span>
@@ -1790,6 +1802,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1910,34 +1923,24 @@
       });
     });
 
-    // Form Submission
+    // Form Submission - Netlify AJAX handler
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData);
-      
-      // Here you would typically send this to your backend
-      console.log('Form submitted:', data);
-      
-      // Show success message (in production, this would happen after successful submission)
-      alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-      contactForm.reset();
-    });
 
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+      const formData = new FormData(contactForm);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        contactForm.innerHTML = '<div class="form-success"><h3>Thank you!</h3><p>We\'ll get back to you within 24 hours.</p></div>';
+      })
+      .catch((error) => {
+        console.error('Form error:', error);
+        contactForm.innerHTML = '<div class="form-error"><h3>Oops!</h3><p>Something went wrong. Please email us directly.</p></div>';
       });
     });
 
