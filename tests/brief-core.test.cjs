@@ -28,3 +28,14 @@ test('every select renders all declared option elements',()=>{
    assert.deepEqual(options.slice(1),core.choices[key],id+' options');
  }
 });
+test('unsaved navigation guard confirms only same-tab page departures',()=>{
+ const base={dirty:true,currentHref:'https://example.com/brief/',href:'https://example.com/'};
+ assert.equal(core.shouldConfirmNavigation(base),true);
+ assert.equal(core.shouldConfirmNavigation({...base,dirty:false}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,newContext:true}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,modified:true}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,href:'#main'}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,href:'mailto:info@example.com'}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,href:'blob:https://example.com/test'}),false);
+ assert.equal(core.shouldConfirmNavigation({...base,href:'https://other.example/'}),true);
+});

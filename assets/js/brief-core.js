@@ -43,5 +43,9 @@
   function toText(value) { const a = sanitize(value); return ['Vasquez Digital Solutions — project brief','LOCAL PREVIEW · Not submitted','',...sections.flatMap(section => [section.title.toUpperCase(),...section.fields.map(([label,key]) => label + ': ' + display(a[key])),'']),'This brief was prepared in a browser-local preview. It has not been sent to VDS or Notion.'].join('\n'); }
   function restore(text) { const saved = JSON.parse(text); if (saved?.version !== VERSION || !saved.answers || typeof saved.answers !== 'object') throw new Error('Unsupported draft'); return {answers:sanitize(saved.answers),step:Number.isInteger(saved.step) ? Math.min(4,Math.max(0,saved.step)) : 0}; }
   function filename(value) { const slug = sanitize(value).business.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60); return (slug || 'vds-project') + '-brief.txt'; }
-  return {VERSION,STORAGE_KEY,limits,choices,sanitize,validateStep,sections,display,toText,restore,filename};
+  function shouldConfirmNavigation({dirty,href,currentHref,newContext=false,modified=false}) {
+    if (!dirty || newContext || modified) return false;
+    try {const target=new URL(href,currentHref),current=new URL(currentHref);return ['http:','https:'].includes(target.protocol) && (target.origin!==current.origin || target.pathname!==current.pathname || target.search!==current.search);} catch {return false;}
+  }
+  return {VERSION,STORAGE_KEY,limits,choices,sanitize,validateStep,sections,display,toText,restore,filename,shouldConfirmNavigation};
 });

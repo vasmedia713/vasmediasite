@@ -10,6 +10,8 @@
   const errorSummary = document.getElementById('form-errors');
   const exportStatus = document.getElementById('export-status');
   const dialog = document.getElementById('reset-dialog');
+  const leaveDialog = document.getElementById('leave-dialog');
+  let pendingNavigation = null;
   let currentStep = 0, dirty = false, timer, switching = false;
   const fieldIds = {projectType:'project-type'};
   const fieldFor = key => document.getElementById(fieldIds[key] || key);
@@ -117,6 +119,18 @@
     catch { exportStatus.textContent = 'Copy isn’t available in this browser. Use Download brief instead.'; }
   });
   document.getElementById('print-brief').addEventListener('click',() => { window.print(); });
+  document.addEventListener('click',event => {
+    const link=event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button!==0) return;
+    if (!core.shouldConfirmNavigation({dirty,href:link.href,currentHref:location.href,newContext:link.target==='_blank',modified:event.ctrlKey||event.metaKey||event.shiftKey||event.altKey})) return;
+    event.preventDefault();pendingNavigation=link.href;leaveDialog.showModal();
+  });
+  document.getElementById('keep-working').addEventListener('click',()=>{pendingNavigation=null;leaveDialog.close();});
+  leaveDialog.addEventListener('cancel',()=>{pendingNavigation=null;});
+  document.getElementById('leave-draft').addEventListener('click',()=>{
+    const target=pendingNavigation;pendingNavigation=null;leaveDialog.close();
+    if (target) {dirty=false;clearTimeout(timer);location.assign(target);}
+  });
   window.addEventListener('beforeunload',event => { if (dirty) { event.preventDefault(); event.returnValue=''; } });
   window.addEventListener('pagehide',() => { if (saveCheckbox.checked) persist(); });
   try {
