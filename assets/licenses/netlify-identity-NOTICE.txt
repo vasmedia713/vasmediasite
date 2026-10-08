@@ -1,0 +1,7 @@
+@netlify/identity 2.0.0
+Author: Netlify Inc.
+Declared license: MIT
+Source: https://github.com/netlify/primitives/tree/main/packages/identity/prod
+Registry: https://registry.npmjs.org/@netlify/identity/2.0.0
+
+The published package identifies its license as MIT and does not include a separate LICENSE file. Its bundled gotrue-js dependency includes the copyright and MIT notice reproduced in gotrue-js-MIT.txt.

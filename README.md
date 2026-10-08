@@ -1,11 +1,12 @@
 # Vasquez Digital Solutions
 
-A dependency-free static website for Vasquez Digital Solutions. The public homepage includes current work, contact links and clearly labeled app destinations.
+A lightweight static website for Vasquez Digital Solutions. The public homepage includes current work, contact links and clearly labeled app destinations.
 
 ## Run and build
 
 - Preview: `python3 -m http.server 8765`
-- Build the deployable allowlist: `python3 build.py`
+- Install the pinned build dependencies: `npm ci`
+- Build the deployable allowlist and Identity client: `npm run build`
 - Unit tests: `node --test tests/brief-core.test.cjs`
 - Static checks: `python3 tests/check_site.py`
 - JavaScript syntax: `node --check assets/js/site.js && node --check assets/js/brief-core.js && node --check assets/js/brief.js`
@@ -15,11 +16,11 @@ Netlify builds the site into `dist/`. Original historical files remain in Git an
 ## Current functionality
 
 - Responsive public portfolio and email contact links.
-- Customer/owner access information. Website sign-in is not connected.
+- Customer/owner access with managed Google sign-in when configured. A missing provider fails closed. The server verifies session and owner access; it does not trust a client role or email string.
 - A generic, local-only project brief preview with validation, editable review, optional device-local persistence, plain-text download, copying and browser printing.
 - Daily Desk links to its existing private development app; this website does not handle that app’s authentication.
 
-The general brief preview is not the private customer questionnaire. It does not upload files, transmit answers, create accounts, synchronize devices or submit to Notion. Browser local storage is not encrypted account storage. No credentials, identity provider configuration or customer-private content belong in this repository.
+The general brief preview is not the private customer questionnaire. It does not upload files, transmit answers, create accounts, synchronize devices or submit to Notion. Invitation-only Google authentication is a separate feature and requires the Identity provider to be enabled in Netlify. Browser local storage is not encrypted account storage. No credentials, identity provider configuration or customer-private content belong in this repository.
 
 ## Assets
 

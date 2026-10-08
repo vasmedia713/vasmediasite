@@ -69,6 +69,7 @@
     steps.forEach((button,i) => { if (i === index) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
     document.getElementById('step-label').textContent = `Step ${index+1} of 5`;
     document.querySelector('.progress-track').setAttribute('aria-valuenow',String(index+1));
+    document.querySelector('.progress-track').setAttribute('aria-valuetext',`Step ${index+1} of 5`);
     document.querySelector('.progress-fill').style.width = `${(index+1)*20}%`;
     document.getElementById('previous-step').disabled = index === 0;
     document.getElementById('next-step').hidden = index === 4;
@@ -116,7 +117,7 @@
     catch { exportStatus.textContent = 'Copy isn’t available in this browser. Use Download brief instead.'; }
   });
   document.getElementById('print-brief').addEventListener('click',() => { window.print(); });
-  window.addEventListener('beforeunload',event => { if (dirty && !saveCheckbox.checked) { event.preventDefault(); event.returnValue=''; } });
+  window.addEventListener('beforeunload',event => { if (dirty) { event.preventDefault(); event.returnValue=''; } });
   window.addEventListener('pagehide',() => { if (saveCheckbox.checked) persist(); });
   try {
     const saved = localStorage.getItem(core.STORAGE_KEY);
