@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /access/
+Disallow: /brief/
+Sitemap: https://vasmedia.net/sitemap.xml
