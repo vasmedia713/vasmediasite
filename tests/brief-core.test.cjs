@@ -18,3 +18,13 @@ test('step index is bounded',()=>{assert.equal(core.restore(JSON.stringify({vers
 test('plain-text export accurately includes values and non-submission state',()=>{const text=core.toText(valid);assert.ok(text.includes('LOCAL PREVIEW · Not submitted'));assert.ok(text.includes('Business or project: Example workshop'));assert.ok(text.includes('Additional notes: Not specified'));assert.ok(text.includes('not been sent to VDS or Notion'))});
 test('HTML-like answers remain plain text, never interpreted by core',()=>{const a=core.sanitize({...valid,business:'<img onerror=alert(1)>'});assert.equal(a.business,'<img onerror=alert(1)>');assert.ok(core.toText(a).includes('<img onerror=alert(1)>'))});
 test('download filenames are safe and bounded',()=>{assert.equal(core.filename({business:'José & Company / ../'}),'jose-company-brief.txt');assert.equal(core.filename({business:'😎'}),'vds-project-brief.txt');assert.ok(core.filename({business:'a'.repeat(300)}).length<=70)});
+test('every select renders all declared option elements',()=>{
+ const fs=require('node:fs');const html=fs.readFileSync(require.resolve('../brief/index.html'),'utf8');
+ for(const [id,key] of [['project-type','projectType'],['language','language'],['timing','timing'],['readiness','readiness']]){
+   const match=html.match(new RegExp('<select id="'+id+'"[^>]*>([\\s\\S]*?)</select>'));
+   assert.ok(match,'missing select '+id);
+   const options=[...match[1].matchAll(/<option(?:\s[^>]*)?>(.*?)<\/option>/g)].map(m=>m[1]);
+   assert.equal(options.length,core.choices[key].length+1,id+' option count');
+   assert.deepEqual(options.slice(1),core.choices[key],id+' options');
+ }
+});
