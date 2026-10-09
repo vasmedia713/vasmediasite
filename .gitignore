@@ -3,3 +3,5 @@ release/
 node_modules/
 __pycache__/
 .DS_Store
+debug.log
+evidence/customer-function.mjs
