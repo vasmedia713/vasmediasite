@@ -1,5 +1,7 @@
 # Customer wizard implementation checkpoint — 2026-10-09
 
+Later infrastructure recommendation and hardening checkpoint: [customer-architecture-decision.md](customer-architecture-decision.md). It supersedes the open provider comparison below with one recommended synthetic-staging bundle and records 56 passing tests; historical checkpoint evidence below is retained.
+
 Base: main `58d5ca71576678216686b698c89ec6422484de63`. Clean new checkout; existing user work was not changed. Source requirements: [functional](https://app.notion.com/p/3f33e8ee0d0481699ed0d5c6f6619538), [architecture](https://app.notion.com/p/3f33e8ee0d048181a5e2faae2e950ac4), [acceptance](https://app.notion.com/p/3f33e8ee0d04816ab097fa717e7b285b), [release](https://app.notion.com/p/3f33e8ee0d04811096cadfdd5158d796), [template](https://app.notion.com/p/3f33e8ee0d0481daa078c16d5f281165). Current owner authorization resumes independent implementation; historical Notion pause text is preserved. Owner Google access already works; it is not a blocker.
 
 ## Concrete minimal recommendation
