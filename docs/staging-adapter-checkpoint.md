@@ -1,0 +1,39 @@
+# Staging adapter checkpoint — 2026-10-10 UTC
+
+## Approved direction and current provider state
+
+Jose approved the staging architecture on October 10 at 00:22:35 UTC: existing VDS hosting, one dedicated Supabase Free staging project for private drafts/photos/customer sign-in, and $0 additional spend. That question reserved separate confirmation for account access and credential setup. No DD2 hosting change is included.
+
+Fresh read-only checks still show VasMedia713 organization `mwyzduoctilquhcmxttc`, Free tier, one active Pesmera project and two inactive projects. The connected organization listing contains that organization only. This is inventory evidence, not confirmation that a new project is eligible under all account limits. The supported `get_cost` action returned **UNAVAILABLE / tool not returned by tools/list**. The create action requires a native cost-confirmation ID; it cannot safely be substituted with an invented amount/ID.
+
+Netlify's available connector returns plan/project metadata, not actual usage. Attempting the account dashboard through the in-app browser failed because its trusted process exited. Actual monthly Netlify usage/remaining quota/overage remains **unverified**. No secret or environment-variable values were requested as a workaround.
+
+**No staging project, bucket, runtime credentials, schema, SMTP sender or deployment has been configured.** Supabase project creation itself establishes persistent infrastructure and provider-generated database/auth credentials, so it was not performed under an approval that reserved that confirmation. No invitation, live Pesmera write, production deployment or merge occurred.
+
+## Independent pieces completed
+
+- `database/staging-design.sql`: executable local PostgreSQL design for private assignments, optimistic drafts, immutable versions, upload manifests, submission uniqueness and outbox. It includes server-only NOLOGIN role definitions, RLS, restricted app grants and separate worker access. It is not an applied/provider migration; generate the actual migration through the approved Supabase CLI workflow after secure setup.
+- `src/postgres-customer.mjs`: parameterized PostgreSQL transaction adapter; per-request SDK principal scoping; assignment locks; advisory workspace serialization for concurrent first saves; atomic version/draft writes; one submission/outbox per version; upload ownership/status; separate trusted-worker claim using `FOR UPDATE SKIP LOCKED`; lease expiry and fenced completion. `postgresTransactions` wraps an approved pg-compatible pool with commit/rollback/release. It reads no connection string or secret. Runtime pool wiring/dependency remains pending.
+- `src/notion-submission.mjs`: real Notion HTTP operation shapes behind an injected approved transport. Enumerates the approved parent, writes a versioned plain-text JSON child-page snapshot, reads back parent/ID/digest/full payload, and marks an external create attempt durably before issuing it. Timeout after create is reconciled without a second create. Previously attempted creates that remain invisible are explicitly ambiguous, not blindly retried. A crash between durable mark and send can therefore remain unresolved; an operator recovery rule is needed before claiming complete end-to-end recovery. This favors avoiding duplicate pages over claiming guaranteed exactly-once remote delivery.
+- `src/private-photo.mjs`: injected Supabase Storage adapter for signed uploads with overwrite disabled, private-object download, size/hash/MIME-signature checks and mandatory injected image decoder/scanner. The real decoder/scanner is not implemented. No bucket/public access or key setup occurs here.
+- Updated unwired HTTP handler to await asynchronous repository calls. The deployed customer function remains unconditional 503. No live adapters are connected.
+
+Validated structured catalog updates remain required. This phase does not activate canonical writes, modify historical prices/booked contracts/invoices or add a manual approval gate. The new repository's `update_status` stays **disabled**, even when its synthetic Notion transport returns a verified receipt. The existing synthetic apply/rollback contract remains separate from production Pesmera.
+
+## Evidence and limits
+
+**PASS: 69 Node tests**, including 8 local PostgreSQL tests, 4 mocked Notion HTTP tests and 1 mocked Storage test added in this phase. The PostgreSQL suite executes SQL on pinned development dependency `@electric-sql/pglite@0.5.8` (a local WASM PostgreSQL engine) with synthetic data. It exercises atomic rollback, unique submissions, revoked access, role permissions/RLS, upload ownership and worker fencing. The schema review found that `FOR SHARE` needs UPDATE visibility; the app role now has only workspace-column locking privilege with a `WITH CHECK(false)` policy preventing actual assignment changes, verified by the local role tests.
+
+PGlite uses one exclusive database connection, so tests do **not** prove multi-process lock contention, hosted Supabase grants, network durability, cross-device persistence or crash recovery. Two repository objects share the same local engine. PostgreSQL uniqueness/locking mechanisms are implemented, but distributed verification needs at least two real staging connections. Notion and Storage tests use injected HTTP/client fixtures, not real service access. No actual image decoder/scan, signed URL privacy or live Notion permission/read-back result has been verified.
+
+**PASS:** existing five-page static checks, JavaScript syntax and `git diff --check`. Build check completed before updating the review branch. The public static allowlist continues to exclude the synthetic wizard HTML.
+
+## Exact next confirmation for parent to obtain
+
+**Service/action:** Supabase — create the dedicated **VDS Customer Wizard Staging** Free project in **VasMedia713 (`mwyzduoctilquhcmxttc`)**, proposed supported region **US East (`us-east-1`)**; permit provider-generated project/database/auth credentials and subsequent scoped staging setup through native secure provider UI/integration. Do not expose secret values in chat, tool arguments, repository files or logs. No production Pesmera key or broad account credential is requested.
+
+**Permissions/data destination:** only the new synthetic staging project's private `vds_intake` schema, private `vds-private-staging` bucket, restricted app/worker runtime roles, and invite-only customer auth. Future Netlify runtime config must be scoped to the explicitly approved staging context/URL, which is not yet selected. Provider account access/credential setup remains separately reserved. Existing production data, public equipment bucket, DD2 hosting and Juan invitations remain outside scope.
+
+**Cost:** architecture ceiling is $0 additional spend. Account reports Free, but exact new-project eligibility/cost cannot be confirmed because the native cost tool is unavailable. Parent must obtain a supported native cost/quota result before provisioning; no paid upgrade, branching, overage acceptance or fallback is allowed. Netlify actual usage also needs an owner/native dashboard read before staging hosting is activated. If terms/payment/expanded access appear, pause at that exact action.
+
+**Following confirmations, separately scoped:** runtime Notion integration read/insert on response parent `3f33e8ee0d04812683d3dc941ffffe09` and private content intake `3f23e8ee0d0481cdadf5ff9b587b86e4`; approved test identities/recipients; verified existing Resend account/domain/quota before SMTP; secure runtime transport setup; synthetic retention/cleanup; staging URL/deployment authorization. Neither architecture approval nor this code checkpoint authorizes those credentials, emails, sharing changes or deployment. No confirmation is being requested for merely reviewing this code.

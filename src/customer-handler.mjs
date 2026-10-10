@@ -13,7 +13,7 @@ export function createCustomerHandler(resolveVerifiedUser,service) {
       const principal=await resolveVerifiedUser(request);
       if(!principal?.id)return reply({error:'SIGN_IN_REQUIRED'},401);
       const customer=url.searchParams.get('customer');
-      if(request.method==='GET')return reply(service.load(principal,customer));
+      if(request.method==='GET')return reply(await service.load(principal,customer));
       if(request.headers.get('Content-Type')?.split(';')[0].trim()!=='application/json')return reply({error:'JSON_REQUIRED'},415);
       const chunks=[],reader=request.body?.getReader();let size=0;
       if(reader){for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>120000){await reader.cancel();return reply({error:'REQUEST_TOO_LARGE'},413);}chunks.push(value);}}
@@ -22,11 +22,11 @@ export function createCustomerHandler(resolveVerifiedUser,service) {
       const body=JSON.parse(raw);
       // identity/customer/template fields in the body are rejected, not forwarded.
       if(!body || typeof body!=='object' || Array.isArray(body) || Object.keys(body).some(k=>!['operation','draft','revision','photo','photoId'].includes(k)))return reply({error:'UNKNOWN_FIELD'},400);
-      if(body.operation==='save')return reply(service.save(principal,customer,body.draft));
-      if(body.operation==='beginPhoto')return reply(service.beginPhoto(principal,customer,body.photo));
+      if(body.operation==='save')return reply(await service.save(principal,customer,body.draft));
+      if(body.operation==='beginPhoto')return reply(await service.beginPhoto(principal,customer,body.photo));
       if(body.operation==='completePhoto')return reply(await service.completePhoto(principal,customer,body.photoId));
       if(body.operation==='submit')return reply(await service.submit(principal,customer,body.revision));
-      if(body.operation==='receipt')return reply(service.receipt(principal,customer,body.revision));
+      if(body.operation==='receipt')return reply(await service.receipt(principal,customer,body.revision));
       return reply({error:'UNKNOWN_OPERATION'},400);
     }catch(e){const denied=e?.code==='ACCESS_DENIED';return reply({error:denied?'ACCESS_DENIED':e?.code==='DRAFT_CONFLICT'?'DRAFT_CONFLICT':'REQUEST_UNVERIFIED'},denied?403:e?.code==='DRAFT_CONFLICT'?409:400);}
   };
