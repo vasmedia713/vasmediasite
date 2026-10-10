@@ -5,7 +5,7 @@ from html.parser import HTMLParser
 import json
 
 ROOT=Path(__file__).resolve().parents[1]
-PUBLIC=[ROOT/'index.html',ROOT/'access/index.html',ROOT/'brief/index.html',ROOT/'privacy/index.html',ROOT/'404.html']
+PUBLIC=[ROOT/'index.html',ROOT/'access/index.html',ROOT/'brief/index.html',ROOT/'privacy/index.html',ROOT/'404.html',ROOT/'customer/index.html']
 class Page(HTMLParser):
     def __init__(self,path):
         super().__init__(convert_charrefs=True)

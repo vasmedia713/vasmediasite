@@ -8,3 +8,6 @@
   X-Robots-Tag: noindex, nofollow
 /brief/*
   X-Robots-Tag: noindex, nofollow
+/customer/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store
